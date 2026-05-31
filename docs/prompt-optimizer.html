@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompt Optimizer</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0f1117;
+      color: #e2e8f0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    header { max-width: 860px; margin: 0 auto 2rem; }
+    header h1 { font-size: 1.5rem; font-weight: 700; color: #f8fafc; margin-bottom: 0.25rem; }
+    header p { color: #64748b; font-size: 0.9rem; }
+
+    .iteration-badge {
+      display: inline-block;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 999px;
+      padding: 0.2rem 0.75rem;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      margin-top: 0.5rem;
+    }
+
+    .container { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .card label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748b;
+      margin-bottom: 0.75rem;
+    }
+
+    textarea {
+      width: 100%;
+      background: #0f1117;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      color: #e2e8f0;
+      font-family: 'SF Mono', 'Monaco', 'Fira Code', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      padding: 1rem;
+      resize: vertical;
+      min-height: 120px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    textarea:focus { border-color: #6366f1; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #6366f1;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.65rem 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 1rem;
+    }
+
+    .btn:hover { background: #4f46e5; }
+
+    .btn-secondary {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #e2e8f0;
+    }
+
+    .btn-secondary:hover { background: #334155; }
+
+    .results { display: none; flex-direction: column; gap: 1.5rem; }
+    .results.visible { display: flex; }
+
+    .dimensions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media (max-width: 600px) { .dimensions-grid { grid-template-columns: 1fr; } }
+
+    .dimension {
+      background: #0f1117;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 1rem;
+    }
+
+    .dimension-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .dimension-name { font-size: 0.85rem; font-weight: 600; color: #cbd5e1; }
+
+    .rating {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .rating-strong { background: #14532d; color: #4ade80; }
+    .rating-needs-work { background: #713f12; color: #fbbf24; }
+    .rating-critical { background: #4c0519; color: #f87171; }
+
+    .dimension-diagnosis { font-size: 0.82rem; color: #94a3b8; line-height: 1.5; margin-bottom: 0.4rem; }
+    .dimension-fix { font-size: 0.82rem; color: #818cf8; line-height: 1.5; }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #475569;
+      margin-bottom: 0.75rem;
+    }
+
+    .revised-prompt {
+      background: #0f1117;
+      border: 1px solid #334155;
+      border-left: 3px solid #6366f1;
+      border-radius: 8px;
+      padding: 1rem;
+      font-family: 'SF Mono', 'Monaco', 'Fira Code', monospace;
+      font-size: 0.875rem;
+      line-height: 1.7;
+      color: #e2e8f0;
+      white-space: pre-wrap;
+    }
+
+    .changes-list, .gaps-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .changes-list li {
+      font-size: 0.875rem;
+      color: #94a3b8;
+      line-height: 1.6;
+      padding-left: 1rem;
+      border-left: 2px solid #334155;
+    }
+
+    .gaps-list li {
+      font-size: 0.875rem;
+      color: #fca5a5;
+      line-height: 1.6;
+      padding-left: 1rem;
+      border-left: 2px solid #f87171;
+    }
+
+    .score-bar { display: flex; gap: 0.4rem; align-items: center; margin-bottom: 1rem; }
+
+    .score-pip {
+      width: 28px;
+      height: 8px;
+      border-radius: 4px;
+      background: #334155;
+    }
+
+    .score-pip.strong { background: #4ade80; }
+    .score-pip.needs-work { background: #fbbf24; }
+    .score-pip.critical { background: #f87171; }
+
+    .score-label { font-size: 0.8rem; color: #64748b; margin-left: 0.5rem; }
+    .actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Prompt Optimizer</h1>
+  <p>Evaluate and refine prompts before sending them to Claude Code.</p>
+  <div class="iteration-badge" id="iterationBadge">Iteration 1</div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <label for="promptInput">Your Prompt</label>
+    <textarea id="promptInput" placeholder="Paste the prompt you plan to send to Claude Code..."></textarea>
+    <div class="actions">
+      <button class="btn" onclick="analyze()">Analyze Prompt</button>
+    </div>
+  </div>
+
+  <div class="results" id="results">
+    <div class="card">
+      <div class="section-label">Score Overview</div>
+      <div class="score-bar" id="scoreBar"></div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Dimension Analysis</div>
+      <div class="dimensions-grid" id="dimensionsGrid"></div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Revised Prompt</div>
+      <div class="revised-prompt" id="revisedPrompt"></div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">What Changed</div>
+      <ul class="changes-list" id="changesList"></ul>
+    </div>
+
+    <div class="card" id="gapsCard" style="display:none">
+      <div class="section-label">Gaps</div>
+      <ul class="gaps-list" id="gapsList"></ul>
+    </div>
+
+    <div class="card">
+      <label for="revisedInput">Iterate on the Revised Prompt</label>
+      <textarea id="revisedInput" placeholder="Paste the revised prompt here to run another round..."></textarea>
+      <div class="actions">
+        <button class="btn btn-secondary" onclick="useRevised()">Use Revised Prompt Above</button>
+        <button class="btn" onclick="analyzeRevised()">Analyze Again</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let iteration = 1;
+
+  const VAGUE_SHOW = ['show', 'display', 'add', 'make it', 'update it', 'fix it', 'improve'];
+  const UNRESOLVED_REFS = ['it', 'this', 'that', 'the component', 'the file', 'the page', 'the thing'];
+  const CONSTRAINT_WORDS = ['do not', "don't", 'avoid', 'without', 'keep', 'preserve', 'only'];
+  const ROLE_WORDS = ['you are', 'act as', 'as a', 'your role'];
+  const FILE_REFS = ['.jsx', '.tsx', '.js', '.ts', '.css', '.html', 'src/', 'components/', 'pages/'];
+  const DATA_REFS = ['from', 'using', 'the', '.', '[', 'field', 'prop', 'data'];
+
+  function wordCount(text) { return text.trim().split(/\s+/).length; }
+
+  function hasAny(text, terms) {
+    const lower = text.toLowerCase();
+    return terms.some(t => lower.includes(t));
+  }
+
+  function startsWithRole(text) { return hasAny(text, ROLE_WORDS); }
+
+  function hasFileReference(text) { return hasAny(text, FILE_REFS); }
+
+  function hasConstraints(text) { return hasAny(text, CONSTRAINT_WORDS); }
+
+  function hasUnresolvedRefs(text) {
+    const lower = text.toLowerCase();
+    return ['update it', 'fix it', 'change it', 'make it', 'add to it', ' it ', ' this ', ' that '].some(t => lower.includes(t));
+  }
+
+  function hasVagueVerb(text) {
+    const lower = text.toLowerCase();
+    return ['show', 'display it', 'make it show', 'update it'].some(t => lower.includes(t));
+  }
+
+  function constraintsBeforeTasks(text) {
+    const lower = text.toLowerCase();
+    const firstConstraint = Math.min(...CONSTRAINT_WORDS.map(w => lower.indexOf(w)).filter(i => i >= 0), Infinity);
+    const firstTask = lower.search(/\b(add|build|create|update|fix|change|implement|write)\b/);
+    if (firstConstraint === Infinity) return null; // no constraints at all
+    return firstConstraint < firstTask;
+  }
+
+  function evaluate(prompt) {
+    const wc = wordCount(prompt);
+    const dims = {};
+
+    // 1. Clarity
+    if (hasVagueVerb(prompt) || (wc < 8 && hasAny(prompt, VAGUE_SHOW))) {
+      dims.clarity = { rating: 'Critical', diagnosis: '"Show" or similar vague verb can be interpreted multiple ways — badge, number, label, color, tooltip, or full breakdown.', fix: 'Specify the exact visual treatment (e.g., "display a color-coded badge").' };
+    } else if (wc < 15) {
+      dims.clarity = { rating: 'Needs Work', diagnosis: 'Instruction is short and likely ambiguous without more specifics.', fix: 'Add detail about the expected output format or behavior.' };
+    } else {
+      dims.clarity = { rating: 'Strong', diagnosis: 'No issues found.' };
+    }
+
+    // 2. Context
+    if (!hasFileReference(prompt)) {
+      dims.context = { rating: 'Critical', diagnosis: 'No file path or component name is referenced — Claude cannot know where to make changes.', fix: 'Name the specific file (e.g., src/components/ProductCard.jsx) and the data source.' };
+    } else {
+      dims.context = { rating: 'Strong', diagnosis: 'No issues found.' };
+    }
+
+    // 3. Scope
+    if (wc < 10) {
+      dims.scope = { rating: 'Critical', diagnosis: 'No scope boundary — could apply to one component, one view, or the entire app.', fix: 'Scope the instruction to a specific component or view.' };
+    } else if (!hasConstraints(prompt)) {
+      dims.scope = { rating: 'Needs Work', diagnosis: 'No explicit boundary on what should not be changed.', fix: 'Add a constraint like "do not modify any other components."' };
+    } else {
+      dims.scope = { rating: 'Strong', diagnosis: 'No issues found.' };
+    }
+
+    // 4. Role and Persona
+    if (!startsWithRole(prompt)) {
+      dims.role = { rating: 'Needs Work', diagnosis: 'No role is established for this session.', fix: 'Add "You are a React developer working on the Clean Shopper app." at the start.' };
+    } else {
+      dims.role = { rating: 'Strong', diagnosis: 'No issues found.' };
+    }
+
+    // 5. Instruction Sequencing
+    const constraintFirst = constraintsBeforeTasks(prompt);
+    if (constraintFirst === null) {
+      dims.sequencing = { rating: 'Needs Work', diagnosis: 'No constraints are stated — nothing tells Claude what not to change.', fix: 'Add constraints before the task instruction.' };
+    } else if (!constraintFirst) {
+      dims.sequencing = { rating: 'Needs Work', diagnosis: 'Constraints appear after the task instruction — Claude may start executing before reading them.', fix: 'Move all constraints to before the main task.' };
+    } else {
+      dims.sequencing = { rating: 'Strong', diagnosis: 'No issues found.' };
+    }
+
+    // 6. Unresolved References
+    if (hasUnresolvedRefs(prompt)) {
+      dims.references = { rating: 'Critical', diagnosis: '"It," "this," or similar pronoun appears without a clear antecedent — Claude cannot know what is being referred to.', fix: 'Replace all pronouns with the specific file name or component name.' };
+    } else {
+      dims.references = { rating: 'Strong', diagnosis: 'No issues found.' };
+    }
+
+    // 7. Token Efficiency
+    if (wc > 80) {
+      dims.tokens = { rating: 'Needs Work', diagnosis: 'Prompt is longer than necessary — some content may be redundant.', fix: 'Remove repeated ideas and tighten phrasing without losing precision.' };
+    } else {
+      dims.tokens = { rating: 'Strong', diagnosis: 'No issues found.' };
+    }
+
+    return dims;
+  }
+
+  function generateRevised(prompt, dims) {
+    const criticals = Object.values(dims).filter(d => d.rating === 'Critical');
+    if (criticals.length >= 3) {
+      return 'Cannot be produced — too many critical gaps. See Gaps section below.';
+    }
+
+    let revised = prompt.trim();
+
+    // Add role if missing
+    if (dims.role.rating !== 'Strong') {
+      revised = 'You are a React developer working on the Clean Shopper app. ' + revised;
+    }
+
+    // Move/add constraints if missing
+    if (dims.sequencing.rating !== 'Strong' && dims.scope.rating !== 'Strong') {
+      revised += ' Do not modify any other components or the existing layout structure.';
+    }
+
+    return revised;
+  }
+
+  function generateChanges(dims) {
+    const changes = [];
+    if (dims.role.rating !== 'Strong') changes.push('Added role and project context at the start (Dimension 4) — establishes who Claude is in this session.');
+    if (dims.sequencing.rating !== 'Strong') changes.push('Added constraint at the end (Dimension 5) — tells Claude what not to change before it starts executing.');
+    if (dims.references.rating === 'Critical') changes.push('Flagged unresolved reference (Dimension 6) — "it" or similar pronoun has no antecedent; the specific file name must be substituted.');
+    if (dims.clarity.rating === 'Critical') changes.push('Flagged ambiguous verb (Dimension 1) — "show" can mean badge, label, score, or full breakdown; the exact treatment must be specified.');
+    if (dims.context.rating === 'Critical') changes.push('Flagged missing file reference (Dimension 2) — no file path was present; the specific component file must be named.');
+    return changes;
+  }
+
+  function generateGaps(dims) {
+    const gaps = [];
+    if (dims.references.rating === 'Critical') gaps.push('Component file — the prompt contains no file reference. Specify the exact path (e.g., src/components/ProductCard.jsx).');
+    if (dims.clarity.rating === 'Critical') gaps.push('Visual treatment — "show" is ambiguous. Define the display format: badge, label, score, color coding.');
+    if (dims.context.rating === 'Critical') gaps.push('Data source — no field name or data object is referenced. Specify the exact field name from the product data.');
+    if (dims.scope.rating === 'Critical') gaps.push('Scope — no boundary is set. Define which component or view this applies to.');
+    return gaps;
+  }
+
+  function analyze() {
+    const prompt = document.getElementById('promptInput').value.trim();
+    if (!prompt) { alert('Please paste a prompt first.'); return; }
+
+    const dims = evaluate(prompt);
+    const revised = generateRevised(prompt, dims);
+    const changes = generateChanges(dims);
+    const gaps = generateGaps(dims);
+
+    renderResults({ dimensions: dims, revisedPrompt: revised, changes, gaps });
+  }
+
+  function analyzeRevised() {
+    const prompt = document.getElementById('revisedInput').value.trim();
+    if (!prompt) { alert('Please paste a revised prompt first.'); return; }
+    iteration++;
+    document.getElementById('iterationBadge').textContent = `Iteration ${iteration}`;
+    document.getElementById('promptInput').value = prompt;
+    const dims = evaluate(prompt);
+    const revised = generateRevised(prompt, dims);
+    const changes = generateChanges(dims);
+    const gaps = generateGaps(dims);
+    renderResults({ dimensions: dims, revisedPrompt: revised, changes, gaps });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function useRevised() {
+    const revised = document.getElementById('revisedPrompt').textContent;
+    document.getElementById('revisedInput').value = revised;
+  }
+
+  function getRatingClass(rating) {
+    if (rating === 'Strong') return 'strong';
+    if (rating === 'Critical') return 'critical';
+    return 'needs-work';
+  }
+
+  function getRatingBadgeClass(rating) {
+    if (rating === 'Strong') return 'rating-strong';
+    if (rating === 'Critical') return 'rating-critical';
+    return 'rating-needs-work';
+  }
+
+  const DIMENSION_LABELS = {
+    clarity: '1. Clarity',
+    context: '2. Context',
+    scope: '3. Scope',
+    role: '4. Role & Persona',
+    sequencing: '5. Instruction Sequencing',
+    references: '6. Unresolved References',
+    tokens: '7. Token Efficiency'
+  };
+
+  function renderResults(data) {
+    const results = document.getElementById('results');
+    results.classList.add('visible');
+
+    // Score bar
+    const scoreBar = document.getElementById('scoreBar');
+    scoreBar.innerHTML = '';
+    let strongCount = 0;
+    Object.entries(data.dimensions).forEach(([key, dim]) => {
+      const cls = getRatingClass(dim.rating);
+      if (cls === 'strong') strongCount++;
+      const pip = document.createElement('div');
+      pip.className = `score-pip ${cls}`;
+      pip.title = `${DIMENSION_LABELS[key]}: ${dim.rating}`;
+      scoreBar.appendChild(pip);
+    });
+    const label = document.createElement('span');
+    label.className = 'score-label';
+    label.textContent = `${strongCount} of 7 dimensions strong`;
+    scoreBar.appendChild(label);
+
+    // Dimensions
+    const grid = document.getElementById('dimensionsGrid');
+    grid.innerHTML = '';
+    Object.entries(data.dimensions).forEach(([key, dim]) => {
+      grid.innerHTML += `
+        <div class="dimension">
+          <div class="dimension-header">
+            <span class="dimension-name">${DIMENSION_LABELS[key]}</span>
+            <span class="rating ${getRatingBadgeClass(dim.rating)}">${dim.rating}</span>
+          </div>
+          <div class="dimension-diagnosis">${dim.diagnosis}</div>
+          ${dim.fix ? `<div class="dimension-fix">→ ${dim.fix}</div>` : ''}
+        </div>`;
+    });
+
+    // Revised prompt
+    document.getElementById('revisedPrompt').textContent = data.revisedPrompt;
+
+    // Changes
+    const changesList = document.getElementById('changesList');
+    changesList.innerHTML = data.changes.length
+      ? data.changes.map(c => `<li>${c}</li>`).join('')
+      : '<li>No changes needed.</li>';
+
+    // Gaps
+    const gapsCard = document.getElementById('gapsCard');
+    const gapsList = document.getElementById('gapsList');
+    if (data.gaps.length > 0) {
+      gapsList.innerHTML = data.gaps.map(g => `<li>${g}</li>`).join('');
+      gapsCard.style.display = 'block';
+    } else {
+      gapsCard.style.display = 'none';
+    }
+
+    results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+</script>
+</body>
+</html>
