@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clean Shopper — Design System</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #F9F9F8;
+      font-family: system-ui, -apple-system, sans-serif;
+      color: #1C1C1C;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 56px 40px;
+    }
+
+    /* Header */
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: #737373;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+
+    .meta {
+      display: flex;
+      gap: 48px;
+      font-size: 14px;
+      color: #737373;
+    }
+
+    .meta strong { color: #1C1C1C; }
+
+    hr {
+      border: none;
+      border-top: 1px solid #E8E8E6;
+      margin: 40px 0;
+    }
+
+    /* Section */
+    .section { margin-bottom: 56px; }
+
+    h2 {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 28px;
+    }
+
+    /* Color swatches */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .swatch {
+      border: 1px solid #E8E8E6;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .swatch-color { height: 100px; width: 100%; }
+
+    .swatch-info {
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .swatch-name { font-size: 13px; font-weight: 600; }
+    .swatch-hex { font-size: 12px; font-family: ui-monospace, monospace; }
+    .swatch-usage { font-size: 12px; color: #737373; }
+
+    /* Contrast row */
+    .contrast-row {
+      display: flex;
+      gap: 32px;
+      font-size: 13px;
+      color: #737373;
+      background: #fff;
+      border: 1px solid #E8E8E6;
+      border-radius: 10px;
+      padding: 14px 20px;
+      margin-bottom: 20px;
+    }
+
+    /* Hazard badges */
+    .badge-row { display: flex; gap: 10px; }
+
+    .badge {
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid;
+    }
+
+    /* Typography table */
+    .type-table {
+      border: 1px solid #E8E8E6;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 100px 160px 160px 1fr;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      border-bottom: 1px solid #E8E8E6;
+      overflow: hidden;
+    }
+
+    .type-row:last-child { border-bottom: none; }
+
+    .type-row--header {
+      background: #F9F9F8;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #737373;
+      padding: 12px 20px;
+    }
+
+    .type-label { font-size: 13px; font-weight: 600; }
+    .type-meta { font-size: 12px; color: #737373; font-family: ui-monospace, monospace; }
+    .type-usage { font-size: 12px; color: #737373; }
+    .type-sample {
+      color: #1C1C1C;
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    /* ── Buttons ── */
+    .btn-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: 1.5px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn-primary { background: #3B6E58; color: #fff; border-color: #3B6E58; }
+    .btn-primary:hover { background: #2C5443; border-color: #2C5443; }
+
+    .btn-secondary { background: #fff; color: #3B6E58; border-color: #3B6E58; }
+    .btn-secondary:hover { background: #EEF4F1; }
+
+    .btn-ghost { background: transparent; color: #1C1C1C; border-color: #E8E8E6; }
+    .btn-ghost:hover { background: #F9F9F8; }
+
+    .btn-danger { background: #C23B3B; color: #fff; border-color: #C23B3B; }
+    .btn-danger:hover { background: #a83232; border-color: #a83232; }
+
+    .btn-sm { font-size: 12px; padding: 8px 16px; }
+    .btn-lg { font-size: 16px; padding: 16px 32px; }
+
+    /* ── Badges ── */
+    .badge-demo-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .tag-new { background: #1C1C1C; color: #fff; }
+    .tag-sale { background: #C23B3B; color: #fff; }
+    .tag-clean { background: #EEF4F1; color: #3B6E58; border: 1px solid #3B6E58; }
+    .tag-moderate { background: #FBF3E3; color: #C2820A; border: 1px solid #C2820A; }
+    .tag-hazard { background: #FAEAEA; color: #C23B3B; border: 1px solid #C23B3B; }
+
+    /* ── Search input ── */
+    .input-demo { display: flex; flex-direction: column; gap: 16px; }
+
+    .input-wrap {
+      position: relative;
+      width: 360px;
+    }
+
+    .input-wrap svg {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #737373;
+    }
+
+    .input-field {
+      width: 100%;
+      font-size: 14px;
+      font-family: inherit;
+      padding: 11px 16px 11px 40px;
+      border: 1.5px solid #E8E8E6;
+      border-radius: 8px;
+      background: #fff;
+      color: #1C1C1C;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .input-field:focus { border-color: #3B6E58; }
+    .input-field::placeholder { color: #737373; }
+
+    /* ── Navigation bar ── */
+    .nav-demo {
+      background: #fff;
+      border: 1px solid #E8E8E6;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      height: 60px;
+      border-bottom: 1px solid #E8E8E6;
+    }
+
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 800;
+      color: #1C1C1C;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-logo span { color: #3B6E58; }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1C1C1C;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover { color: #3B6E58; }
+
+    .nav-icons {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      color: #1C1C1C;
+    }
+
+    .nav-icons svg { cursor: pointer; }
+    .nav-icons svg:hover { color: #3B6E58; }
+
+    .nav-cart-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      background: #3B6E58;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 50%;
+      margin-left: -6px;
+      margin-top: -10px;
+    }
+
+    /* ── Hero banner ── */
+    .hero-demo {
+      background: #1C1C1C;
+      border-radius: 12px;
+      overflow: hidden;
+      padding: 80px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #3B6E58;
+    }
+
+    .hero-headline {
+      font-size: 44px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      max-width: 480px;
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: #E8E8E6;
+      max-width: 400px;
+      line-height: 1.5;
+    }
+
+    .hero-actions { display: flex; gap: 12px; margin-top: 8px; }
+
+    .hero-note {
+      font-size: 12px;
+      color: #737373;
+      margin-top: 16px;
+    }
+
+    /* ── Product card ── */
+    .card-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .product-card {
+      background: #fff;
+      border: 1px solid #E8E8E6;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .product-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: #F0F0EE;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: #737373;
+      position: relative;
+    }
+
+    .product-img-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+
+    .product-score {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+
+    .product-info {
+      padding: 14px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .product-category { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #737373; }
+    .product-name { font-size: 15px; font-weight: 600; color: #1C1C1C; }
+    .product-desc { font-size: 13px; color: #737373; }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    .product-price { font-size: 15px; font-weight: 700; color: #1C1C1C; }
+    .product-price-old { font-size: 13px; color: #737373; text-decoration: line-through; margin-left: 6px; }
+
+    /* ── Category tile ── */
+    .tile-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .cat-tile {
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 3/4;
+      background: #E8E8E6;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .cat-tile-bg {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: #737373;
+    }
+
+    .cat-tile-label {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      padding: 20px;
+      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%);
+      color: #fff;
+    }
+
+    .cat-tile-label h3 { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+    .cat-tile-label a { font-size: 13px; color: #fff; text-decoration: underline; }
+
+    /* ── Footer ── */
+    .footer-demo {
+      background: #1C1C1C;
+      border-radius: 12px;
+      padding: 40px;
+      color: #E8E8E6;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+
+    .footer-logo { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 10px; }
+    .footer-logo span { color: #3B6E58; }
+    .footer-tagline { font-size: 13px; color: #737373; line-height: 1.5; }
+
+    .footer-col h4 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #737373; margin-bottom: 12px; }
+
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-col ul a { font-size: 13px; color: #E8E8E6; text-decoration: none; }
+    .footer-col ul a:hover { color: #fff; }
+
+    .footer-bottom {
+      border-top: 1px solid #2E2E2E;
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: #737373;
+    }
+
+    .footer-social { display: flex; gap: 12px; }
+    .footer-social a { color: #737373; text-decoration: none; font-size: 18px; }
+    .footer-social a:hover { color: #fff; }
+
+    /* Component section labels */
+    .component-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #737373;
+      margin-bottom: 12px;
+    }
+
+    .component-block {
+      background: #fff;
+      border: 1px solid #E8E8E6;
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+
+    .component-block + .component-label { margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header>
+      <p class="eyebrow">DESIGN SYSTEM</p>
+      <h1>Clean Shopper</h1>
+      <div class="meta">
+        <span><strong>Direction:</strong> Modern and clean, near-monochrome with a muted sage accent</span>
+        <span><strong>Feeling:</strong> Trustworthy and approachable</span>
+        <span><strong>Reference:</strong> Hungryroot</span>
+      </div>
+    </header>
+
+    <hr />
+
+    <section class="section">
+      <h2>Color</h2>
+
+      <div class="swatch-grid">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#F9F9F8; border-bottom:1px solid #E8E8E6;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Background</span>
+            <span class="swatch-hex">#F9F9F8</span>
+            <span class="swatch-usage">Page background</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#FFFFFF; border-bottom:1px solid #E8E8E6;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Surface</span>
+            <span class="swatch-hex">#FFFFFF</span>
+            <span class="swatch-usage">Cards, panels</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#1C1C1C;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Text primary</span>
+            <span class="swatch-hex">#1C1C1C</span>
+            <span class="swatch-usage">Headings, body</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#737373;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Text muted</span>
+            <span class="swatch-hex">#737373</span>
+            <span class="swatch-usage">Captions, labels</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#3B6E58;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Accent</span>
+            <span class="swatch-hex">#3B6E58</span>
+            <span class="swatch-usage">Actions, links</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#2C5443;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Accent hover</span>
+            <span class="swatch-hex">#2C5443</span>
+            <span class="swatch-usage">Hover state</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#E8E8E6; border-bottom:1px solid #E8E8E6;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Border</span>
+            <span class="swatch-hex">#E8E8E6</span>
+            <span class="swatch-usage">Dividers, inputs</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#C2820A;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Warning</span>
+            <span class="swatch-hex">#C2820A</span>
+            <span class="swatch-usage">Moderate hazard</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#C23B3B;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Error</span>
+            <span class="swatch-hex">#C23B3B</span>
+            <span class="swatch-usage">High hazard</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#3B5F8A;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Info</span>
+            <span class="swatch-hex">#3B5F8A</span>
+            <span class="swatch-usage">Informational</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contrast-row">
+        <span>Text on background — 18:1 ✓ AAA</span>
+        <span>Muted on background — 4.9:1 ✓ AA</span>
+        <span>White on accent — 5.9:1 ✓ AA</span>
+      </div>
+
+      <div class="badge-row">
+        <span class="badge" style="color:#3B6E58; background:#EEF4F1; border-color:#3B6E58;">• Score 1–2 · Clean</span>
+        <span class="badge" style="color:#C2820A; background:#FBF3E3; border-color:#C2820A;">• Score 3–6 · Moderate</span>
+        <span class="badge" style="color:#C23B3B; background:#FAEAEA; border-color:#C23B3B;">• Score 7–10 · High hazard</span>
+      </div>
+    </section>
+
+    <hr />
+
+    <section class="section">
+      <h2>Typography</h2>
+
+      <div class="type-table">
+
+        <div class="type-row type-row--header">
+          <span>Style</span>
+          <span>Size / Weight</span>
+          <span>Usage</span>
+          <span>Sample</span>
+        </div>
+
+        <div class="type-row">
+          <span class="type-label">Display</span>
+          <span class="type-meta">48px · 700</span>
+          <span class="type-usage">Hero headings</span>
+          <span class="type-sample" style="font-size:36px; font-weight:700; letter-spacing:-1px; line-height:1.1;">Clean Shopper</span>
+        </div>
+
+        <div class="type-row">
+          <span class="type-label">Heading 1</span>
+          <span class="type-meta">32px · 700</span>
+          <span class="type-usage">Page titles</span>
+          <span class="type-sample" style="font-size:32px; font-weight:700; letter-spacing:-0.5px;">Product Details</span>
+        </div>
+
+        <div class="type-row">
+          <span class="type-label">Heading 2</span>
+          <span class="type-meta">24px · 600</span>
+          <span class="type-usage">Section titles</span>
+          <span class="type-sample" style="font-size:24px; font-weight:600;">Ingredients</span>
+        </div>
+
+        <div class="type-row">
+          <span class="type-label">Heading 3</span>
+          <span class="type-meta">18px · 600</span>
+          <span class="type-usage">Card titles, labels</span>
+          <span class="type-sample" style="font-size:18px; font-weight:600;">Fragrance-free formula</span>
+        </div>
+
+        <div class="type-row">
+          <span class="type-label">Body</span>
+          <span class="type-meta">15px · 400</span>
+          <span class="type-usage">Default prose</span>
+          <span class="type-sample" style="font-size:15px; font-weight:400; color:#1C1C1C;">This product is free of parabens, sulfates, and synthetic fragrance.</span>
+        </div>
+
+        <div class="type-row">
+          <span class="type-label">Body small</span>
+          <span class="type-meta">13px · 400</span>
+          <span class="type-usage">Captions, meta</span>
+          <span class="type-sample" style="font-size:13px; font-weight:400; color:#737373;">Last updated June 2026</span>
+        </div>
+
+        <div class="type-row">
+          <span class="type-label">Label</span>
+          <span class="type-meta">11px · 600 · uppercase</span>
+          <span class="type-usage">Tags, eyebrows</span>
+          <span class="type-sample" style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#737373;">Hazard Score</span>
+        </div>
+
+        <div class="type-row">
+          <span class="type-label">Mono</span>
+          <span class="type-meta">13px · 400 · monospace</span>
+          <span class="type-usage">Codes, hex values</span>
+          <span class="type-sample" style="font-size:13px; font-family:ui-monospace, monospace;">#3B6E58</span>
+        </div>
+
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- BUTTONS -->
+    <section class="section">
+      <h2>Buttons</h2>
+
+      <p class="component-label">Variants</p>
+      <div class="component-block">
+        <div class="btn-row">
+          <a class="btn btn-primary">Shop Now</a>
+          <a class="btn btn-secondary">Learn More</a>
+          <a class="btn btn-ghost">View All</a>
+          <a class="btn btn-danger">Remove</a>
+        </div>
+      </div>
+
+      <p class="component-label">Sizes</p>
+      <div class="component-block">
+        <div class="btn-row">
+          <a class="btn btn-primary btn-sm">Small</a>
+          <a class="btn btn-primary">Default</a>
+          <a class="btn btn-primary btn-lg">Large</a>
+        </div>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- BADGES -->
+    <section class="section">
+      <h2>Badges</h2>
+
+      <p class="component-label">Product &amp; Hazard Tags</p>
+      <div class="component-block">
+        <div class="badge-demo-row">
+          <span class="tag tag-new">New</span>
+          <span class="tag tag-sale">Sale</span>
+          <span class="tag tag-clean">● Score 1–2 · Clean</span>
+          <span class="tag tag-moderate">● Score 3–6 · Moderate</span>
+          <span class="tag tag-hazard">● Score 7–10 · High hazard</span>
+        </div>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- SEARCH INPUT -->
+    <section class="section">
+      <h2>Inputs</h2>
+
+      <p class="component-label">Search</p>
+      <div class="component-block">
+        <div class="input-demo">
+          <div class="input-wrap">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input class="input-field" type="text" placeholder="Search products…" />
+          </div>
+          <div class="input-wrap">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input class="input-field" type="text" value="dish soap" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- NAVIGATION -->
+    <section class="section">
+      <h2>Navigation</h2>
+
+      <p class="component-label">Top Nav Bar</p>
+      <div class="nav-demo">
+        <nav class="nav-bar">
+          <div class="nav-logo">Clean<span>Shopper</span></div>
+          <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Categories</a></li>
+            <li><a href="#">About</a></li>
+          </ul>
+          <div class="nav-icons">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <div style="display:flex; align-items:flex-start;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+              </svg>
+              <span class="nav-cart-count">2</span>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- HERO BANNER -->
+    <section class="section">
+      <h2>Hero Banner</h2>
+
+      <p class="component-label">Full-width hero with CTA</p>
+      <div class="hero-demo">
+        <p class="hero-eyebrow">New Collection</p>
+        <h3 class="hero-headline">Clean ingredients. Better choices.</h3>
+        <p class="hero-sub">Discover home and pantry products rated for safety, transparency, and sustainability.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary">Shop Now</a>
+          <a class="btn btn-ghost" style="color:#fff; border-color:rgba(255,255,255,0.3);">Learn More</a>
+        </div>
+        <p class="hero-note">Background image would appear here (e.g. a product lifestyle photo)</p>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- PRODUCT CARD -->
+    <section class="section">
+      <h2>Product Card</h2>
+
+      <p class="component-label">Grid — 3 columns</p>
+      <div class="card-row">
+
+        <div class="product-card">
+          <div class="product-img">
+            <span>Product image</span>
+            <div class="product-img-tag"><span class="tag tag-new">New</span></div>
+            <div class="product-score"><span class="tag tag-clean">Score 1</span></div>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Cleaning</span>
+            <span class="product-name">Branch Basics Concentrate</span>
+            <span class="product-desc">All-purpose non-toxic concentrate</span>
+            <div class="product-footer">
+              <div>
+                <span class="product-price">$49.00</span>
+              </div>
+              <a class="btn btn-primary btn-sm">Add</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img">
+            <span>Product image</span>
+            <div class="product-score"><span class="tag tag-moderate">Score 4</span></div>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Pantry</span>
+            <span class="product-name">Dr. Bronner's Dish Soap</span>
+            <span class="product-desc">Fair trade, biodegradable formula</span>
+            <div class="product-footer">
+              <div>
+                <span class="product-price">$11.99</span>
+              </div>
+              <a class="btn btn-primary btn-sm">Add</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img">
+            <span>Product image</span>
+            <div class="product-img-tag"><span class="tag tag-sale">Sale</span></div>
+            <div class="product-score"><span class="tag tag-clean">Score 2</span></div>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Personal Care</span>
+            <span class="product-name">Meliora Laundry Powder</span>
+            <span class="product-desc">Zero-waste, fragrance-free</span>
+            <div class="product-footer">
+              <div>
+                <span class="product-price">$16.00</span>
+                <span class="product-price-old">$20.00</span>
+              </div>
+              <a class="btn btn-primary btn-sm">Add</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- CATEGORY TILE -->
+    <section class="section">
+      <h2>Category Tile</h2>
+
+      <p class="component-label">Image tiles with overlay label — 3 columns</p>
+      <div class="tile-row">
+        <div class="cat-tile" style="background:#C8D8D0;">
+          <div class="cat-tile-bg">Category image</div>
+          <div class="cat-tile-label">
+            <h3>Cleaning</h3>
+            <a href="#">Shop now →</a>
+          </div>
+        </div>
+        <div class="cat-tile" style="background:#D8CFC8;">
+          <div class="cat-tile-bg">Category image</div>
+          <div class="cat-tile-label">
+            <h3>Pantry</h3>
+            <a href="#">Shop now →</a>
+          </div>
+        </div>
+        <div class="cat-tile" style="background:#C8C8D8;">
+          <div class="cat-tile-bg">Category image</div>
+          <div class="cat-tile-label">
+            <h3>Personal Care</h3>
+            <a href="#">Shop now →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- FOOTER -->
+    <section class="section">
+      <h2>Footer</h2>
+
+      <p class="component-label">Site footer — dark background</p>
+      <div class="footer-demo">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-logo">Clean<span>Shopper</span></div>
+            <p class="footer-tagline">Helping you discover home and pantry products that are clean, non-toxic, and kind to the planet.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Shop</h4>
+            <ul>
+              <li><a href="#">Cleaning</a></li>
+              <li><a href="#">Pantry</a></li>
+              <li><a href="#">Personal Care</a></li>
+              <li><a href="#">New Arrivals</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">How We Score</a></li>
+              <li><a href="#">Sustainability</a></li>
+              <li><a href="#">Blog</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Help</h4>
+            <ul>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Shipping</a></li>
+              <li><a href="#">Returns</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 CleanShopper, Inc.</span>
+          <div class="footer-social">
+            <a href="#">ig</a>
+            <a href="#">tt</a>
+            <a href="#">fb</a>
+            <a href="#">yt</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>
