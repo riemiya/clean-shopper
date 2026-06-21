@@ -7,7 +7,7 @@ import ProductDetailPage from './pages/ProductDetailPage';
 import './App.css';
 
 function App() {
-  const sessionId = useSession();
+  useSession();
 
   return (
     <BrowserRouter>

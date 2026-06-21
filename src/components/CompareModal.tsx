@@ -9,6 +9,7 @@ interface Props {
   onClose: () => void;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ROWS = [
   { label: 'Price',      key: 'price' },
   { label: 'Clean Score', key: 'score' },
