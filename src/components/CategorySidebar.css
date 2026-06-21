@@ -1,0 +1,53 @@
+.category-sidebar {
+  width: 180px;
+  flex-shrink: 0;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  position: sticky;
+  top: 24px;
+}
+
+.category-sidebar__heading {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+  margin: 0 0 10px;
+}
+
+.category-sidebar__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.category-sidebar__item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #374151;
+  cursor: pointer;
+  transition: background 0.1s ease, color 0.1s ease;
+}
+
+.category-sidebar__item:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.category-sidebar__item.active {
+  background: #f0fdf4;
+  color: #16a34a;
+  font-weight: 600;
+}

@@ -8,114 +8,60 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background: #F9F9F8;
+      background: #f3f4f6;
       font-family: system-ui, -apple-system, sans-serif;
-      color: #1C1C1C;
+      font-size: 15px;
+      color: #111827;
       -webkit-font-smoothing: antialiased;
     }
 
-    .page {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 56px 40px;
+    /* Layout */
+    .page { max-width: 1000px; margin: 0 auto; padding: 56px 40px 80px; }
+
+    header { margin-bottom: 48px; }
+    header h1 { font-size: 40px; font-weight: 700; letter-spacing: -1px; margin-bottom: 8px; }
+    header p { font-size: 15px; color: #6b7280; }
+
+    hr { border: none; border-top: 1px solid #e5e7eb; margin: 48px 0; }
+
+    .section { margin-bottom: 56px; }
+    .section-title { font-size: 24px; font-weight: 700; color: #111827; margin-bottom: 28px; }
+    .sub-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #6b7280; margin-bottom: 12px;
     }
 
-    /* Header */
-    .eyebrow {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      color: #737373;
-      margin-bottom: 12px;
-    }
-
-    h1 {
-      font-size: 48px;
-      font-weight: 700;
-      letter-spacing: -1px;
+    .block {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 28px;
       margin-bottom: 20px;
     }
 
-    .meta {
-      display: flex;
-      gap: 48px;
-      font-size: 14px;
-      color: #737373;
-    }
-
-    .meta strong { color: #1C1C1C; }
-
-    hr {
-      border: none;
-      border-top: 1px solid #E8E8E6;
-      margin: 40px 0;
-    }
-
-    /* Section */
-    .section { margin-bottom: 56px; }
-
-    h2 {
-      font-size: 36px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      margin-bottom: 28px;
-    }
-
-    /* Color swatches */
+    /* ── Colors ── */
     .swatch-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
-      margin-bottom: 24px;
+      gap: 14px;
     }
 
     .swatch {
-      border: 1px solid #E8E8E6;
-      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
       overflow: hidden;
       background: #fff;
     }
 
-    .swatch-color { height: 100px; width: 100%; }
+    .swatch-color { height: 72px; width: 100%; }
+    .swatch-info { padding: 10px 12px; }
+    .swatch-name { font-size: 12px; font-weight: 600; display: block; }
+    .swatch-hex { font-size: 11px; font-family: ui-monospace, monospace; color: #6b7280; display: block; }
+    .swatch-usage { font-size: 11px; color: #9ca3af; display: block; margin-top: 2px; }
 
-    .swatch-info {
-      padding: 12px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .swatch-name { font-size: 13px; font-weight: 600; }
-    .swatch-hex { font-size: 12px; font-family: ui-monospace, monospace; }
-    .swatch-usage { font-size: 12px; color: #737373; }
-
-    /* Contrast row */
-    .contrast-row {
-      display: flex;
-      gap: 32px;
-      font-size: 13px;
-      color: #737373;
-      background: #fff;
-      border: 1px solid #E8E8E6;
-      border-radius: 10px;
-      padding: 14px 20px;
-      margin-bottom: 20px;
-    }
-
-    /* Hazard badges */
-    .badge-row { display: flex; gap: 10px; }
-
-    .badge {
-      font-size: 13px;
-      font-weight: 500;
-      padding: 6px 14px;
-      border-radius: 999px;
-      border: 1px solid;
-    }
-
-    /* Typography table */
+    /* ── Typography ── */
     .type-table {
-      border: 1px solid #E8E8E6;
+      border: 1px solid #e5e7eb;
       border-radius: 12px;
       overflow: hidden;
       background: #fff;
@@ -123,126 +69,43 @@
 
     .type-row {
       display: grid;
-      grid-template-columns: 100px 160px 160px 1fr;
+      grid-template-columns: 110px 160px 160px 1fr;
       align-items: center;
       gap: 16px;
-      padding: 16px 20px;
-      border-bottom: 1px solid #E8E8E6;
-      overflow: hidden;
+      padding: 14px 20px;
+      border-bottom: 1px solid #e5e7eb;
     }
 
     .type-row:last-child { border-bottom: none; }
-
     .type-row--header {
-      background: #F9F9F8;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #737373;
-      padding: 12px 20px;
+      background: #f9fafb;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #6b7280;
     }
 
     .type-label { font-size: 13px; font-weight: 600; }
-    .type-meta { font-size: 12px; color: #737373; font-family: ui-monospace, monospace; }
-    .type-usage { font-size: 12px; color: #737373; }
-    .type-sample {
-      color: #1C1C1C;
-      min-width: 0;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
+    .type-meta { font-size: 12px; color: #6b7280; font-family: ui-monospace, monospace; }
+    .type-usage { font-size: 12px; color: #9ca3af; }
+    .type-sample { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 
-    /* ── Buttons ── */
-    .btn-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    /* ── Tag chips ── */
+    .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-size: 14px;
-      font-weight: 600;
-      padding: 12px 24px;
-      border-radius: 8px;
-      border: 1.5px solid transparent;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.15s, border-color 0.15s;
-      white-space: nowrap;
-    }
-
-    .btn-primary { background: #3B6E58; color: #fff; border-color: #3B6E58; }
-    .btn-primary:hover { background: #2C5443; border-color: #2C5443; }
-
-    .btn-secondary { background: #fff; color: #3B6E58; border-color: #3B6E58; }
-    .btn-secondary:hover { background: #EEF4F1; }
-
-    .btn-ghost { background: transparent; color: #1C1C1C; border-color: #E8E8E6; }
-    .btn-ghost:hover { background: #F9F9F8; }
-
-    .btn-danger { background: #C23B3B; color: #fff; border-color: #C23B3B; }
-    .btn-danger:hover { background: #a83232; border-color: #a83232; }
-
-    .btn-sm { font-size: 12px; padding: 8px 16px; }
-    .btn-lg { font-size: 16px; padding: 16px 32px; }
-
-    /* ── Badges ── */
-    .badge-demo-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-
-    .tag {
-      display: inline-block;
+    .chip {
       font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      border-radius: 4px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid;
+      font-weight: 500;
     }
 
-    .tag-new { background: #1C1C1C; color: #fff; }
-    .tag-sale { background: #C23B3B; color: #fff; }
-    .tag-clean { background: #EEF4F1; color: #3B6E58; border: 1px solid #3B6E58; }
-    .tag-moderate { background: #FBF3E3; color: #C2820A; border: 1px solid #C2820A; }
-    .tag-hazard { background: #FAEAEA; color: #C23B3B; border: 1px solid #C23B3B; }
+    /* ── Score ring (SVG inline) ── */
+    .score-row { display: flex; align-items: center; gap: 20px; }
 
-    /* ── Search input ── */
-    .input-demo { display: flex; flex-direction: column; gap: 16px; }
-
-    .input-wrap {
-      position: relative;
-      width: 360px;
-    }
-
-    .input-wrap svg {
-      position: absolute;
-      left: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #737373;
-    }
-
-    .input-field {
-      width: 100%;
-      font-size: 14px;
-      font-family: inherit;
-      padding: 11px 16px 11px 40px;
-      border: 1.5px solid #E8E8E6;
-      border-radius: 8px;
-      background: #fff;
-      color: #1C1C1C;
-      outline: none;
-      transition: border-color 0.15s;
-    }
-
-    .input-field:focus { border-color: #3B6E58; }
-    .input-field::placeholder { color: #737373; }
-
-    /* ── Navigation bar ── */
+    /* ── Nav ── */
     .nav-demo {
       background: #fff;
-      border: 1px solid #E8E8E6;
+      border: 1px solid #e5e7eb;
       border-radius: 12px;
       overflow: hidden;
     }
@@ -252,513 +115,561 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 24px;
-      height: 60px;
-      border-bottom: 1px solid #E8E8E6;
+      height: 56px;
+      border-bottom: 1px solid #e5e7eb;
     }
 
-    .nav-logo {
-      font-size: 18px;
-      font-weight: 800;
-      color: #1C1C1C;
-      letter-spacing: -0.5px;
-    }
+    .nav-logo { font-size: 16px; font-weight: 600; color: #111827; text-decoration: none; }
 
-    .nav-logo span { color: #3B6E58; }
-
-    .nav-links {
+    .nav-search-demo {
+      flex: 1;
+      max-width: 360px;
+      margin: 0 24px;
+      position: relative;
       display: flex;
-      gap: 28px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 14px;
-      font-weight: 500;
-      color: #1C1C1C;
-      text-decoration: none;
-    }
-
-    .nav-links a:hover { color: #3B6E58; }
-
-    .nav-icons {
-      display: flex;
-      gap: 16px;
       align-items: center;
-      color: #1C1C1C;
     }
 
-    .nav-icons svg { cursor: pointer; }
-    .nav-icons svg:hover { color: #3B6E58; }
+    .nav-search-demo svg {
+      position: absolute;
+      left: 12px;
+      color: #9ca3af;
+    }
 
-    .nav-cart-count {
-      display: inline-flex;
+    .nav-search-demo input {
+      width: 100%;
+      padding: 7px 16px 7px 34px;
+      font-size: 14px;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 999px;
+      background: #f9fafb;
+      color: #111827;
+      outline: none;
+    }
+
+    .nav-search-demo input::placeholder { color: #9ca3af; }
+
+    .nav-icons-demo { display: flex; align-items: center; gap: 4px; }
+
+    .nav-icon-btn-demo {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #374151;
+      padding: 8px;
+      border-radius: 8px;
+      display: flex;
       align-items: center;
       justify-content: center;
-      width: 18px;
-      height: 18px;
-      background: #3B6E58;
+      position: relative;
+    }
+
+    .nav-icon-btn-demo:hover { background: #f3f4f6; }
+
+    .nav-cart-badge-demo {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      background: #16a34a;
       color: #fff;
       font-size: 10px;
       font-weight: 700;
-      border-radius: 50%;
-      margin-left: -6px;
-      margin-top: -10px;
-    }
-
-    /* ── Hero banner ── */
-    .hero-demo {
-      background: #1C1C1C;
-      border-radius: 12px;
-      overflow: hidden;
-      padding: 80px 48px;
+      min-width: 16px;
+      height: 16px;
+      border-radius: 999px;
       display: flex;
-      flex-direction: column;
-      gap: 16px;
-      position: relative;
-    }
-
-    .hero-eyebrow {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #3B6E58;
-    }
-
-    .hero-headline {
-      font-size: 44px;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -1px;
-      line-height: 1.1;
-      max-width: 480px;
-    }
-
-    .hero-sub {
-      font-size: 16px;
-      color: #E8E8E6;
-      max-width: 400px;
-      line-height: 1.5;
-    }
-
-    .hero-actions { display: flex; gap: 12px; margin-top: 8px; }
-
-    .hero-note {
-      font-size: 12px;
-      color: #737373;
-      margin-top: 16px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 3px;
     }
 
     /* ── Product card ── */
-    .card-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
+    .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 
-    .product-card {
+    .product-card-demo {
       background: #fff;
-      border: 1px solid #E8E8E6;
+      border: 1px solid #e5e7eb;
       border-radius: 12px;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
-    .product-img {
-      width: 100%;
-      aspect-ratio: 4/3;
-      background: #F0F0EE;
+    .card-img {
+      position: relative;
+      background: #f3f4f6;
+      aspect-ratio: 1 / 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
-      color: #737373;
-      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
     }
 
-    .product-img-tag {
+    .card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .compare-cb {
       position: absolute;
-      top: 10px;
-      left: 10px;
+      top: 8px; left: 8px;
+      width: 20px; height: 20px;
+      border-radius: 4px;
+      border: 2px solid white;
+      background: rgba(0,0,0,0.25);
+      display: flex; align-items: center; justify-content: center;
     }
 
-    .product-score {
+    .compare-cb.active { background: #16a34a; border-color: #16a34a; }
+
+    .bookmark-btn-demo {
       position: absolute;
-      top: 10px;
-      right: 10px;
+      top: 8px; right: 8px;
+      background: none; border: none;
+      padding: 4px;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
     }
 
-    .product-info {
-      padding: 14px 16px 16px;
+    .card-body {
+      padding: 14px;
       display: flex;
       flex-direction: column;
       gap: 4px;
+      flex: 1;
     }
 
-    .product-category { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #737373; }
-    .product-name { font-size: 15px; font-weight: 600; color: #1C1C1C; }
-    .product-desc { font-size: 13px; color: #737373; }
+    .card-price { font-size: 20px; font-weight: 700; color: #000; }
+    .card-name { font-size: 15px; font-weight: 400; color: #111827; line-height: 1.3; }
+    .card-desc { font-size: 12px; color: #6b7280; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-    .product-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 10px;
-    }
+    .card-rating { display: flex; align-items: center; gap: 4px; margin-top: 4px; }
+    .card-stars { color: #f59e0b; font-size: 12px; }
+    .card-rating-count { font-size: 11px; color: #6b7280; }
+    .card-bought { font-size: 11px; color: #6b7280; }
 
-    .product-price { font-size: 15px; font-weight: 700; color: #1C1C1C; }
-    .product-price-old { font-size: 13px; color: #737373; text-decoration: line-through; margin-left: 6px; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
 
-    /* ── Category tile ── */
-    .tile-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .cat-tile {
-      border-radius: 12px;
-      overflow: hidden;
-      position: relative;
-      aspect-ratio: 3/4;
-      background: #E8E8E6;
-      display: flex;
-      align-items: flex-end;
-    }
-
-    .cat-tile-bg {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      color: #737373;
-    }
-
-    .cat-tile-label {
-      position: relative;
-      z-index: 1;
+    .card-cta {
+      display: block;
       width: 100%;
-      padding: 20px;
-      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%);
+      margin-top: 12px;
+      padding: 10px;
+      background: #111827;
       color: #fff;
-    }
-
-    .cat-tile-label h3 { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
-    .cat-tile-label a { font-size: 13px; color: #fff; text-decoration: underline; }
-
-    /* ── Footer ── */
-    .footer-demo {
-      background: #1C1C1C;
-      border-radius: 12px;
-      padding: 40px;
-      color: #E8E8E6;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr 1fr;
-      gap: 32px;
-      margin-bottom: 32px;
-    }
-
-    .footer-logo { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 10px; }
-    .footer-logo span { color: #3B6E58; }
-    .footer-tagline { font-size: 13px; color: #737373; line-height: 1.5; }
-
-    .footer-col h4 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #737373; margin-bottom: 12px; }
-
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-    .footer-col ul a { font-size: 13px; color: #E8E8E6; text-decoration: none; }
-    .footer-col ul a:hover { color: #fff; }
-
-    .footer-bottom {
-      border-top: 1px solid #2E2E2E;
-      padding-top: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 12px;
-      color: #737373;
-    }
-
-    .footer-social { display: flex; gap: 12px; }
-    .footer-social a { color: #737373; text-decoration: none; font-size: 18px; }
-    .footer-social a:hover { color: #fff; }
-
-    /* Component section labels */
-    .component-label {
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #737373;
-      margin-bottom: 12px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      text-align: center;
     }
 
-    .component-block {
+    .card-cta.added { background: #16a34a; }
+
+    /* ── Category sidebar ── */
+    .sidebar-demo {
       background: #fff;
-      border: 1px solid #E8E8E6;
+      border: 1px solid #e5e7eb;
       border-radius: 12px;
-      padding: 28px;
-      margin-bottom: 20px;
+      padding: 20px;
+      width: 200px;
     }
 
-    .component-block + .component-label { margin-top: 8px; }
+    .sidebar-demo h4 { font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    .sidebar-item {
+      display: block;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #374151;
+      cursor: pointer;
+      text-decoration: none;
+      margin-bottom: 2px;
+    }
+
+    .sidebar-item.active { background: #f0fdf4; color: #15803d; font-weight: 600; }
+    .sidebar-item:hover { background: #f9fafb; }
+
+    /* ── Buttons ── */
+    .btn-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+    .btn-pill {
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-black { background: #111827; color: #fff; }
+    .btn-outline { background: #fff; color: #111827; border: 2px solid #111827; padding: 11px 24px; }
+    .btn-green { background: #16a34a; color: #fff; }
+    .btn-green-outline { background: #fff; color: #16a34a; border: 2px solid #16a34a; padding: 11px 24px; }
+
+    /* ── Size picker ── */
+    .size-options { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+
+    .size-btn {
+      padding: 8px 16px;
+      border: 1.5px solid #d1d5db;
+      border-radius: 8px;
+      background: #fff;
+      font-size: 14px;
+      color: #374151;
+      cursor: pointer;
+    }
+
+    .size-btn.active { border: 2px solid #111827; font-weight: 600; color: #111827; }
+
+    /* ── Quantity picker ── */
+    .qty-demo {
+      display: inline-flex;
+      align-items: center;
+      border: 1.5px solid #d1d5db;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .qty-btn {
+      width: 40px; height: 44px;
+      background: none; border: none;
+      font-size: 18px; color: #374151; cursor: pointer;
+    }
+
+    .qty-val {
+      width: 36px;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 600;
+      border-left: 1.5px solid #d1d5db;
+      border-right: 1.5px solid #d1d5db;
+      line-height: 44px;
+    }
+
+    /* ── Compare bar ── */
+    .compare-bar-demo {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+    }
+
+    .compare-thumbs { display: flex; gap: 10px; }
+
+    .compare-thumb {
+      width: 48px; height: 48px;
+      border-radius: 8px;
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      overflow: hidden;
+    }
+
+    .compare-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ── Image gallery ── */
+    .gallery-demo { display: flex; gap: 12px; }
+
+    .gallery-thumbs-demo { display: flex; flex-direction: column; gap: 8px; }
+
+    .gallery-thumb-demo {
+      width: 64px; height: 64px;
+      border-radius: 8px;
+      border: 2px solid transparent;
+      background: #f3f4f6;
+      overflow: hidden;
+    }
+
+    .gallery-thumb-demo.active { border-color: #111827; }
+    .gallery-thumb-demo img { width: 100%; height: 100%; object-fit: cover; }
+
+    .gallery-main-demo {
+      flex: 1;
+      background: #f3f4f6;
+      border-radius: 12px;
+      aspect-ratio: 1/1;
+      max-width: 280px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-main-demo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .gallery-arrows-demo {
+      position: absolute;
+      bottom: 12px; right: 12px;
+      display: flex; gap: 8px;
+    }
+
+    .gallery-arrow-demo {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: 1.5px solid #d1d5db;
+      background: rgba(255,255,255,0.9);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: #374151; font-size: 14px;
+    }
+
+    /* ── Accordion ── */
+    .accordion-demo { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; background: #fff; }
+
+    .accordion-item { border-bottom: 1px solid #e5e7eb; }
+    .accordion-item:last-child { border-bottom: none; }
+
+    .accordion-header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .accordion-body {
+      padding: 0 20px 20px;
+      font-size: 14px;
+      color: #374151;
+      line-height: 1.6;
+    }
+
+    /* ── Breadcrumb ── */
+    .breadcrumb-demo { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #6b7280; }
+    .bc-link { color: #6b7280; text-decoration: underline; cursor: pointer; }
+    .bc-sep { color: #d1d5db; }
+    .bc-current { color: #111827; font-weight: 500; }
+
+    /* ── Concern dots ── */
+    .concern-row { display: flex; align-items: center; gap: 20px; font-size: 13px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+    .dot-safe { background: #16a34a; }
+    .dot-caution { background: #d97706; }
+    .dot-avoid { background: #dc2626; }
+
+    .ingredient-list-demo { list-style: none; display: flex; flex-direction: column; gap: 1px; }
+
+    .ing-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: #f9fafb;
+      font-size: 14px;
+    }
+
+    .ing-item.caution { background: #fffbeb; }
+    .ing-item.avoid { background: #fef2f2; }
+    .ing-name { font-weight: 500; }
+    .ing-reason { font-size: 12px; color: #6b7280; display: block; }
   </style>
 </head>
 <body>
   <div class="page">
 
     <header>
-      <p class="eyebrow">DESIGN SYSTEM</p>
+      <p style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#6b7280; margin-bottom:8px;">DESIGN SYSTEM · v2</p>
       <h1>Clean Shopper</h1>
-      <div class="meta">
-        <span><strong>Direction:</strong> Modern and clean, near-monochrome with a muted sage accent</span>
-        <span><strong>Feeling:</strong> Trustworthy and approachable</span>
-        <span><strong>Reference:</strong> Hungryroot</span>
-      </div>
+      <p>Modern, clean, and trustworthy. Near-monochrome with green as the primary action color.<br>
+        Base font: <strong>system-ui</strong> · Base size: <strong>18px</strong> (zoomed-in feel)</p>
     </header>
 
     <hr />
 
+    <!-- COLORS -->
     <section class="section">
-      <h2>Color</h2>
+      <h2 class="section-title">Color</h2>
 
-      <div class="swatch-grid">
-        <div class="swatch">
-          <div class="swatch-color" style="background:#F9F9F8; border-bottom:1px solid #E8E8E6;"></div>
-          <div class="swatch-info">
-            <span class="swatch-name">Background</span>
-            <span class="swatch-hex">#F9F9F8</span>
-            <span class="swatch-usage">Page background</span>
+      <p class="sub-label">Core palette</p>
+      <div class="block">
+        <div class="swatch-grid">
+          <div class="swatch">
+            <div class="swatch-color" style="background:#111827;"></div>
+            <div class="swatch-info">
+              <span class="swatch-name">Ink</span>
+              <span class="swatch-hex">#111827</span>
+              <span class="swatch-usage">Text primary, CTA fill</span>
+            </div>
           </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background:#FFFFFF; border-bottom:1px solid #E8E8E6;"></div>
-          <div class="swatch-info">
-            <span class="swatch-name">Surface</span>
-            <span class="swatch-hex">#FFFFFF</span>
-            <span class="swatch-usage">Cards, panels</span>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#374151;"></div>
+            <div class="swatch-info">
+              <span class="swatch-name">Ink hover</span>
+              <span class="swatch-hex">#374151</span>
+              <span class="swatch-usage">Hover state for dark btns</span>
+            </div>
           </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background:#1C1C1C;"></div>
-          <div class="swatch-info">
-            <span class="swatch-name">Text primary</span>
-            <span class="swatch-hex">#1C1C1C</span>
-            <span class="swatch-usage">Headings, body</span>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#6b7280;"></div>
+            <div class="swatch-info">
+              <span class="swatch-name">Muted</span>
+              <span class="swatch-hex">#6b7280</span>
+              <span class="swatch-usage">Secondary text, meta</span>
+            </div>
           </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background:#737373;"></div>
-          <div class="swatch-info">
-            <span class="swatch-name">Text muted</span>
-            <span class="swatch-hex">#737373</span>
-            <span class="swatch-usage">Captions, labels</span>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#9ca3af;"></div>
+            <div class="swatch-info">
+              <span class="swatch-name">Subtle</span>
+              <span class="swatch-hex">#9ca3af</span>
+              <span class="swatch-usage">Placeholders, icons</span>
+            </div>
           </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background:#3B6E58;"></div>
-          <div class="swatch-info">
-            <span class="swatch-name">Accent</span>
-            <span class="swatch-hex">#3B6E58</span>
-            <span class="swatch-usage">Actions, links</span>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#e5e7eb; border-bottom: 1px solid #d1d5db;"></div>
+            <div class="swatch-info">
+              <span class="swatch-name">Border</span>
+              <span class="swatch-hex">#e5e7eb</span>
+              <span class="swatch-usage">Cards, dividers, inputs</span>
+            </div>
           </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background:#2C5443;"></div>
-          <div class="swatch-info">
-            <span class="swatch-name">Accent hover</span>
-            <span class="swatch-hex">#2C5443</span>
-            <span class="swatch-usage">Hover state</span>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#f3f4f6; border-bottom: 1px solid #e5e7eb;"></div>
+            <div class="swatch-info">
+              <span class="swatch-name">Surface dim</span>
+              <span class="swatch-hex">#f3f4f6</span>
+              <span class="swatch-usage">Image placeholders, hover</span>
+            </div>
           </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background:#E8E8E6; border-bottom:1px solid #E8E8E6;"></div>
-          <div class="swatch-info">
-            <span class="swatch-name">Border</span>
-            <span class="swatch-hex">#E8E8E6</span>
-            <span class="swatch-usage">Dividers, inputs</span>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#f9fafb; border-bottom: 1px solid #e5e7eb;"></div>
+            <div class="swatch-info">
+              <span class="swatch-name">Background</span>
+              <span class="swatch-hex">#f9fafb</span>
+              <span class="swatch-usage">Page background</span>
+            </div>
           </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background:#C2820A;"></div>
-          <div class="swatch-info">
-            <span class="swatch-name">Warning</span>
-            <span class="swatch-hex">#C2820A</span>
-            <span class="swatch-usage">Moderate hazard</span>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#ffffff; border-bottom: 1px solid #e5e7eb;"></div>
+            <div class="swatch-info">
+              <span class="swatch-name">Surface</span>
+              <span class="swatch-hex">#ffffff</span>
+              <span class="swatch-usage">Cards, nav, modals</span>
+            </div>
           </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background:#C23B3B;"></div>
-          <div class="swatch-info">
-            <span class="swatch-name">Error</span>
-            <span class="swatch-hex">#C23B3B</span>
-            <span class="swatch-usage">High hazard</span>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#16a34a;"></div>
+            <div class="swatch-info">
+              <span class="swatch-name">Green</span>
+              <span class="swatch-hex">#16a34a</span>
+              <span class="swatch-usage">Bookmarks, added, safe</span>
+            </div>
           </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background:#3B5F8A;"></div>
-          <div class="swatch-info">
-            <span class="swatch-name">Info</span>
-            <span class="swatch-hex">#3B5F8A</span>
-            <span class="swatch-usage">Informational</span>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#dc2626;"></div>
+            <div class="swatch-info">
+              <span class="swatch-name">Red</span>
+              <span class="swatch-hex">#dc2626</span>
+              <span class="swatch-usage">Brand links on detail page</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="contrast-row">
-        <span>Text on background — 18:1 ✓ AAA</span>
-        <span>Muted on background — 4.9:1 ✓ AA</span>
-        <span>White on accent — 5.9:1 ✓ AA</span>
+      <p class="sub-label">Tag chip colors (by slug)</p>
+      <div class="block">
+        <div class="chip-row">
+          <span class="chip" style="background:#f0fdf4; color:#15803d; border-color:#bbf7d0;">Vegan</span>
+          <span class="chip" style="background:#fefce8; color:#a16207; border-color:#fde68a;">Organic</span>
+          <span class="chip" style="background:#eff6ff; color:#1d4ed8; border-color:#bfdbfe;">Fragrance-Free</span>
+          <span class="chip" style="background:#fff7ed; color:#c2410c; border-color:#fed7aa;">Gluten-Free</span>
+          <span class="chip" style="background:#f0fdfa; color:#0f766e; border-color:#99f6e4;">Non-GMO</span>
+          <span class="chip" style="background:#faf5ff; color:#7e22ce; border-color:#e9d5ff;">Plant-Based</span>
+          <span class="chip" style="background:#fdf2f8; color:#9d174d; border-color:#fbcfe8;">Dye-Free</span>
+          <span class="chip" style="background:#f3f4f6; color:#374151; border-color:#e5e7eb;">Cruelty-Free</span>
+        </div>
       </div>
 
-      <div class="badge-row">
-        <span class="badge" style="color:#3B6E58; background:#EEF4F1; border-color:#3B6E58;">• Score 1–2 · Clean</span>
-        <span class="badge" style="color:#C2820A; background:#FBF3E3; border-color:#C2820A;">• Score 3–6 · Moderate</span>
-        <span class="badge" style="color:#C23B3B; background:#FAEAEA; border-color:#C23B3B;">• Score 7–10 · High hazard</span>
+      <p class="sub-label">Ingredient concern colors</p>
+      <div class="block">
+        <div class="concern-row">
+          <span><span class="dot dot-safe"></span>Safe — #16a34a</span>
+          <span><span class="dot dot-caution"></span>Use caution — #d97706</span>
+          <span><span class="dot dot-avoid"></span>Avoid — #dc2626</span>
+        </div>
       </div>
     </section>
 
     <hr />
 
+    <!-- TYPOGRAPHY -->
     <section class="section">
-      <h2>Typography</h2>
-
+      <h2 class="section-title">Typography</h2>
       <div class="type-table">
-
         <div class="type-row type-row--header">
-          <span>Style</span>
-          <span>Size / Weight</span>
-          <span>Usage</span>
-          <span>Sample</span>
+          <span>Style</span><span>Size / Weight</span><span>Usage</span><span>Sample</span>
         </div>
-
         <div class="type-row">
-          <span class="type-label">Display</span>
-          <span class="type-meta">48px · 700</span>
-          <span class="type-usage">Hero headings</span>
-          <span class="type-sample" style="font-size:36px; font-weight:700; letter-spacing:-1px; line-height:1.1;">Clean Shopper</span>
+          <span class="type-label">Price</span>
+          <span class="type-meta">20px · 700 (card)<br>28px · 700 (detail)</span>
+          <span class="type-usage">Product price</span>
+          <span class="type-sample" style="font-size:24px; font-weight:700;">$24.99</span>
         </div>
-
         <div class="type-row">
-          <span class="type-label">Heading 1</span>
-          <span class="type-meta">32px · 700</span>
-          <span class="type-usage">Page titles</span>
-          <span class="type-sample" style="font-size:32px; font-weight:700; letter-spacing:-0.5px;">Product Details</span>
-        </div>
-
-        <div class="type-row">
-          <span class="type-label">Heading 2</span>
-          <span class="type-meta">24px · 600</span>
-          <span class="type-usage">Section titles</span>
-          <span class="type-sample" style="font-size:24px; font-weight:600;">Ingredients</span>
-        </div>
-
-        <div class="type-row">
-          <span class="type-label">Heading 3</span>
-          <span class="type-meta">18px · 600</span>
-          <span class="type-usage">Card titles, labels</span>
-          <span class="type-sample" style="font-size:18px; font-weight:600;">Fragrance-free formula</span>
-        </div>
-
-        <div class="type-row">
-          <span class="type-label">Body</span>
+          <span class="type-label">Product name</span>
           <span class="type-meta">15px · 400</span>
-          <span class="type-usage">Default prose</span>
-          <span class="type-sample" style="font-size:15px; font-weight:400; color:#1C1C1C;">This product is free of parabens, sulfates, and synthetic fragrance.</span>
+          <span class="type-usage">Card product name</span>
+          <span class="type-sample" style="font-size:15px; font-weight:400;">Wool Dryer Balls (6-pack)</span>
         </div>
-
         <div class="type-row">
-          <span class="type-label">Body small</span>
-          <span class="type-meta">13px · 400</span>
-          <span class="type-usage">Captions, meta</span>
-          <span class="type-sample" style="font-size:13px; font-weight:400; color:#737373;">Last updated June 2026</span>
+          <span class="type-label">Detail name</span>
+          <span class="type-meta">22px · 700</span>
+          <span class="type-usage">Detail page H1</span>
+          <span class="type-sample" style="font-size:22px; font-weight:700;">Wool Dryer Balls (6-pack)</span>
         </div>
-
         <div class="type-row">
-          <span class="type-label">Label</span>
-          <span class="type-meta">11px · 600 · uppercase</span>
-          <span class="type-usage">Tags, eyebrows</span>
-          <span class="type-sample" style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#737373;">Hazard Score</span>
+          <span class="type-label">Description</span>
+          <span class="type-meta">12px · 400 (card)<br>14px · 400 (detail)</span>
+          <span class="type-usage">Product description</span>
+          <span class="type-sample" style="font-size:13px; color:#6b7280;">Set of 6 XL wool dryer balls that reduce drying time…</span>
         </div>
-
         <div class="type-row">
-          <span class="type-label">Mono</span>
-          <span class="type-meta">13px · 400 · monospace</span>
-          <span class="type-usage">Codes, hex values</span>
-          <span class="type-sample" style="font-size:13px; font-family:ui-monospace, monospace;">#3B6E58</span>
+          <span class="type-label">Rating count</span>
+          <span class="type-meta">11px · 400</span>
+          <span class="type-usage">Review & purchase meta</span>
+          <span class="type-sample" style="font-size:11px; color:#6b7280;">4.9 (8,743) · 5,200+ bought in past month</span>
         </div>
-
-      </div>
-    </section>
-
-    <hr />
-
-    <!-- BUTTONS -->
-    <section class="section">
-      <h2>Buttons</h2>
-
-      <p class="component-label">Variants</p>
-      <div class="component-block">
-        <div class="btn-row">
-          <a class="btn btn-primary">Shop Now</a>
-          <a class="btn btn-secondary">Learn More</a>
-          <a class="btn btn-ghost">View All</a>
-          <a class="btn btn-danger">Remove</a>
+        <div class="type-row">
+          <span class="type-label">Brand label</span>
+          <span class="type-meta">11px · 500 · uppercase</span>
+          <span class="type-usage">Brand name on card</span>
+          <span class="type-sample" style="font-size:11px; font-weight:500; text-transform:uppercase; letter-spacing:0.05em; color:#6b7280;">Clean &amp; Simple</span>
         </div>
-      </div>
-
-      <p class="component-label">Sizes</p>
-      <div class="component-block">
-        <div class="btn-row">
-          <a class="btn btn-primary btn-sm">Small</a>
-          <a class="btn btn-primary">Default</a>
-          <a class="btn btn-primary btn-lg">Large</a>
+        <div class="type-row">
+          <span class="type-label">Brand link</span>
+          <span class="type-meta">13px · 500</span>
+          <span class="type-usage">Detail page brand link (red)</span>
+          <span class="type-sample" style="font-size:13px; font-weight:500; color:#dc2626;">Shop all Clean &amp; Simple</span>
         </div>
-      </div>
-    </section>
-
-    <hr />
-
-    <!-- BADGES -->
-    <section class="section">
-      <h2>Badges</h2>
-
-      <p class="component-label">Product &amp; Hazard Tags</p>
-      <div class="component-block">
-        <div class="badge-demo-row">
-          <span class="tag tag-new">New</span>
-          <span class="tag tag-sale">Sale</span>
-          <span class="tag tag-clean">● Score 1–2 · Clean</span>
-          <span class="tag tag-moderate">● Score 3–6 · Moderate</span>
-          <span class="tag tag-hazard">● Score 7–10 · High hazard</span>
+        <div class="type-row">
+          <span class="type-label">Breadcrumb</span>
+          <span class="type-meta">13px · 400/500</span>
+          <span class="type-usage">Detail page navigation trail</span>
+          <span class="type-sample" style="font-size:13px; color:#6b7280;">Household Essentials › Laundry › <strong style="color:#111827;">Wool Dryer Balls</strong></span>
         </div>
-      </div>
-    </section>
-
-    <hr />
-
-    <!-- SEARCH INPUT -->
-    <section class="section">
-      <h2>Inputs</h2>
-
-      <p class="component-label">Search</p>
-      <div class="component-block">
-        <div class="input-demo">
-          <div class="input-wrap">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
-            <input class="input-field" type="text" placeholder="Search products…" />
-          </div>
-          <div class="input-wrap">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
-            <input class="input-field" type="text" value="dish soap" />
-          </div>
+        <div class="type-row">
+          <span class="type-label">Section heading</span>
+          <span class="type-meta">20px · 700</span>
+          <span class="type-usage">Ingredients, About this item</span>
+          <span class="type-sample" style="font-size:20px; font-weight:700;">Ingredients</span>
+        </div>
+        <div class="type-row">
+          <span class="type-label">Accordion title</span>
+          <span class="type-meta">16px · 600</span>
+          <span class="type-usage">Collapsible section header</span>
+          <span class="type-sample" style="font-size:16px; font-weight:600;">Details</span>
+        </div>
+        <div class="type-row">
+          <span class="type-label">Nav logo</span>
+          <span class="type-meta">16px · 600</span>
+          <span class="type-usage">Top-left nav brand name</span>
+          <span class="type-sample" style="font-size:16px; font-weight:600;">Clean Shopper</span>
         </div>
       </div>
     </section>
@@ -767,203 +678,328 @@
 
     <!-- NAVIGATION -->
     <section class="section">
-      <h2>Navigation</h2>
-
-      <p class="component-label">Top Nav Bar</p>
+      <h2 class="section-title">Navigation</h2>
+      <p class="sub-label">Top nav bar — logo · search · icons</p>
       <div class="nav-demo">
         <nav class="nav-bar">
-          <div class="nav-logo">Clean<span>Shopper</span></div>
-          <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Shop</a></li>
-            <li><a href="#">Categories</a></li>
-            <li><a href="#">About</a></li>
-          </ul>
-          <div class="nav-icons">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <span class="nav-logo">Clean Shopper</span>
+          <div class="nav-search-demo">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
             </svg>
-            <div style="display:flex; align-items:flex-start;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
-              </svg>
-              <span class="nav-cart-count">2</span>
-            </div>
+            <input type="text" placeholder="Search" />
+          </div>
+          <div class="nav-icons-demo">
+            <button class="nav-icon-btn-demo">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </button>
+            <button class="nav-icon-btn-demo" style="position:relative;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+              <span class="nav-cart-badge-demo">3</span>
+            </button>
           </div>
         </nav>
       </div>
-    </section>
-
-    <hr />
-
-    <!-- HERO BANNER -->
-    <section class="section">
-      <h2>Hero Banner</h2>
-
-      <p class="component-label">Full-width hero with CTA</p>
-      <div class="hero-demo">
-        <p class="hero-eyebrow">New Collection</p>
-        <h3 class="hero-headline">Clean ingredients. Better choices.</h3>
-        <p class="hero-sub">Discover home and pantry products rated for safety, transparency, and sustainability.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary">Shop Now</a>
-          <a class="btn btn-ghost" style="color:#fff; border-color:rgba(255,255,255,0.3);">Learn More</a>
-        </div>
-        <p class="hero-note">Background image would appear here (e.g. a product lifestyle photo)</p>
-      </div>
+      <p style="font-size:12px; color:#9ca3af; margin-top:10px;">Search: pill-shaped, full border-radius · Cart badge: green #16a34a · Sticky, z-index 10</p>
     </section>
 
     <hr />
 
     <!-- PRODUCT CARD -->
     <section class="section">
-      <h2>Product Card</h2>
+      <h2 class="section-title">Product Card</h2>
+      <p class="sub-label">Card states — default · added to cart · bookmarked</p>
+      <div class="block">
+        <div class="card-grid">
 
-      <p class="component-label">Grid — 3 columns</p>
-      <div class="card-row">
-
-        <div class="product-card">
-          <div class="product-img">
-            <span>Product image</span>
-            <div class="product-img-tag"><span class="tag tag-new">New</span></div>
-            <div class="product-score"><span class="tag tag-clean">Score 1</span></div>
-          </div>
-          <div class="product-info">
-            <span class="product-category">Cleaning</span>
-            <span class="product-name">Branch Basics Concentrate</span>
-            <span class="product-desc">All-purpose non-toxic concentrate</span>
-            <div class="product-footer">
-              <div>
-                <span class="product-price">$49.00</span>
+          <!-- Default -->
+          <div class="product-card-demo">
+            <div class="card-img">
+              <img src="https://images.unsplash.com/photo-1752600438079-974ec1337063?w=400&q=80" alt="Wool Dryer Balls" />
+              <div class="compare-cb"></div>
+              <button class="bookmark-btn-demo">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#374151" stroke="white" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+              </button>
+            </div>
+            <div class="card-body">
+              <p class="card-price">$24.99</p>
+              <p class="card-name">Wool Dryer Balls (6-pack)</p>
+              <p class="card-desc">Set of 6 XL wool dryer balls that reduce drying time and static. Reusable for 1000+ loads.</p>
+              <div class="card-rating">
+                <span class="card-stars">★★★★★</span>
+                <span class="card-rating-count">4.9 (8,743)</span>
               </div>
-              <a class="btn btn-primary btn-sm">Add</a>
+              <p class="card-bought">5,200+ bought in past month</p>
+              <div class="card-tags">
+                <span class="chip" style="background:#fefce8; color:#a16207; border-color:#fde68a;">Organic</span>
+              </div>
+              <button class="card-cta">Add to Cart</button>
             </div>
           </div>
-        </div>
 
-        <div class="product-card">
-          <div class="product-img">
-            <span>Product image</span>
-            <div class="product-score"><span class="tag tag-moderate">Score 4</span></div>
-          </div>
-          <div class="product-info">
-            <span class="product-category">Pantry</span>
-            <span class="product-name">Dr. Bronner's Dish Soap</span>
-            <span class="product-desc">Fair trade, biodegradable formula</span>
-            <div class="product-footer">
-              <div>
-                <span class="product-price">$11.99</span>
+          <!-- Added to cart -->
+          <div class="product-card-demo">
+            <div class="card-img" style="background:#e0f2fe;">
+              <img src="https://images.unsplash.com/photo-1621719456027-93da798ec181?w=400&q=80" alt="Product" />
+              <div class="compare-cb active">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
               </div>
-              <a class="btn btn-primary btn-sm">Add</a>
+              <button class="bookmark-btn-demo">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#16a34a" stroke="white" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+              </button>
+            </div>
+            <div class="card-body">
+              <p class="card-price">$13.49</p>
+              <p class="card-name">Fragrance-Free Baby Wash</p>
+              <p class="card-desc">Non-toxic baby wash with gentle, plant-based ingredients safe for sensitive skin.</p>
+              <div class="card-rating">
+                <span class="card-stars">★★★★★</span>
+                <span class="card-rating-count">4.5 (2,156)</span>
+              </div>
+              <p class="card-bought">1,400+ bought in past month</p>
+              <div class="card-tags">
+                <span class="chip" style="background:#f0fdf4; color:#15803d; border-color:#bbf7d0;">Vegan</span>
+                <span class="chip" style="background:#eff6ff; color:#1d4ed8; border-color:#bfdbfe;">Fragrance-Free</span>
+              </div>
+              <button class="card-cta added">Added ✓</button>
             </div>
           </div>
-        </div>
 
-        <div class="product-card">
-          <div class="product-img">
-            <span>Product image</span>
-            <div class="product-img-tag"><span class="tag tag-sale">Sale</span></div>
-            <div class="product-score"><span class="tag tag-clean">Score 2</span></div>
-          </div>
-          <div class="product-info">
-            <span class="product-category">Personal Care</span>
-            <span class="product-name">Meliora Laundry Powder</span>
-            <span class="product-desc">Zero-waste, fragrance-free</span>
-            <div class="product-footer">
-              <div>
-                <span class="product-price">$16.00</span>
-                <span class="product-price-old">$20.00</span>
+          <!-- Clean score ring example -->
+          <div class="product-card-demo" style="justify-content:center; align-items:center; padding:24px; gap:12px;">
+            <p class="sub-label" style="margin-bottom:8px;">Clean Score Ring</p>
+            <div class="score-row" style="flex-wrap:wrap; gap:16px;">
+              <!-- Green 100 -->
+              <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+                <svg width="36" height="36" viewBox="0 0 36 36">
+                  <circle cx="18" cy="18" r="15" fill="#f0fdf4" stroke="none"/>
+                  <circle cx="18" cy="18" r="15" fill="none" stroke="#bbf7d0" stroke-width="2"/>
+                  <circle cx="18" cy="18" r="15" fill="none" stroke="#16a34a" stroke-width="2" stroke-dasharray="94.2 94.2" stroke-dashoffset="0" stroke-linecap="round" transform="rotate(-90 18 18)"/>
+                  <text x="18" y="22" text-anchor="middle" font-size="10" font-weight="700" fill="#16a34a">100</text>
+                </svg>
+                <span style="font-size:11px; color:#6b7280;">Excellent</span>
               </div>
-              <a class="btn btn-primary btn-sm">Add</a>
+              <!-- Amber 72 -->
+              <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+                <svg width="36" height="36" viewBox="0 0 36 36">
+                  <circle cx="18" cy="18" r="15" fill="#fffbeb" stroke="none"/>
+                  <circle cx="18" cy="18" r="15" fill="none" stroke="#fde68a" stroke-width="2"/>
+                  <circle cx="18" cy="18" r="15" fill="none" stroke="#d97706" stroke-width="2" stroke-dasharray="94.2 94.2" stroke-dashoffset="26.4" stroke-linecap="round" transform="rotate(-90 18 18)"/>
+                  <text x="18" y="22" text-anchor="middle" font-size="10" font-weight="700" fill="#d97706">72</text>
+                </svg>
+                <span style="font-size:11px; color:#6b7280;">Good</span>
+              </div>
+              <!-- Red 45 -->
+              <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+                <svg width="36" height="36" viewBox="0 0 36 36">
+                  <circle cx="18" cy="18" r="15" fill="#fef2f2" stroke="none"/>
+                  <circle cx="18" cy="18" r="15" fill="none" stroke="#fecaca" stroke-width="2"/>
+                  <circle cx="18" cy="18" r="15" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="94.2 94.2" stroke-dashoffset="51.8" stroke-linecap="round" transform="rotate(-90 18 18)"/>
+                  <text x="18" y="22" text-anchor="middle" font-size="10" font-weight="700" fill="#dc2626">45</text>
+                </svg>
+                <span style="font-size:11px; color:#6b7280;">Caution</span>
+              </div>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </section>
 
     <hr />
 
-    <!-- CATEGORY TILE -->
+    <!-- CATEGORY SIDEBAR -->
     <section class="section">
-      <h2>Category Tile</h2>
+      <h2 class="section-title">Category Sidebar</h2>
+      <p class="sub-label">Left-rail navigation — sticky, white card style</p>
+      <div class="block" style="display:flex; gap:24px; align-items:flex-start;">
+        <div class="sidebar-demo">
+          <h4>Categories</h4>
+          <a class="sidebar-item">All Products</a>
+          <a class="sidebar-item active">Laundry</a>
+          <a class="sidebar-item">Cleaning</a>
+          <a class="sidebar-item">Personal Care</a>
+          <a class="sidebar-item">Pantry</a>
+        </div>
+        <p style="font-size:13px; color:#6b7280; max-width:360px; line-height:1.7;">
+          Sidebar sits left of the product grid. Active item has green tint (#f0fdf4) and bold text.
+          Selection updates the URL via <code>?category=slug</code> search param. Sidebar is sticky on scroll.
+        </p>
+      </div>
+    </section>
 
-      <p class="component-label">Image tiles with overlay label — 3 columns</p>
-      <div class="tile-row">
-        <div class="cat-tile" style="background:#C8D8D0;">
-          <div class="cat-tile-bg">Category image</div>
-          <div class="cat-tile-label">
-            <h3>Cleaning</h3>
-            <a href="#">Shop now →</a>
-          </div>
+    <hr />
+
+    <!-- BUTTONS -->
+    <section class="section">
+      <h2 class="section-title">Buttons</h2>
+
+      <p class="sub-label">CTA variants — pill shape (border-radius: 999px)</p>
+      <div class="block">
+        <div class="btn-row">
+          <button class="btn-pill btn-black">Add to Cart</button>
+          <button class="btn-pill btn-green">Added ✓</button>
+          <button class="btn-pill btn-outline">Add to Bookmarks</button>
+          <button class="btn-pill btn-green-outline">Saved to Bookmarks</button>
         </div>
-        <div class="cat-tile" style="background:#D8CFC8;">
-          <div class="cat-tile-bg">Category image</div>
-          <div class="cat-tile-label">
-            <h3>Pantry</h3>
-            <a href="#">Shop now →</a>
-          </div>
+      </div>
+
+      <p class="sub-label">Size picker — rounded rectangle (border-radius: 8px)</p>
+      <div class="block">
+        <p style="font-size:14px; color:#374151; margin-bottom:10px;">Size: <strong>6-pack</strong></p>
+        <div class="size-options">
+          <button class="size-btn">4-pack</button>
+          <button class="size-btn active">6-pack</button>
+          <button class="size-btn">12-pack</button>
         </div>
-        <div class="cat-tile" style="background:#C8C8D8;">
-          <div class="cat-tile-bg">Category image</div>
-          <div class="cat-tile-label">
-            <h3>Personal Care</h3>
-            <a href="#">Shop now →</a>
+      </div>
+
+      <p class="sub-label">Quantity picker</p>
+      <div class="block">
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div class="qty-demo">
+            <button class="qty-btn">−</button>
+            <span class="qty-val">1</span>
+            <button class="qty-btn">+</button>
           </div>
+          <button class="btn-pill btn-black" style="flex:1; max-width:240px;">Add to Cart</button>
         </div>
       </div>
     </section>
 
     <hr />
 
-    <!-- FOOTER -->
+    <!-- IMAGE GALLERY -->
     <section class="section">
-      <h2>Footer</h2>
+      <h2 class="section-title">Image Gallery</h2>
+      <p class="sub-label">Thumbnail rail (left) + large main image + arrow nav</p>
+      <div class="block">
+        <div class="gallery-demo">
+          <div class="gallery-thumbs-demo">
+            <div class="gallery-thumb-demo active"><img src="https://images.unsplash.com/photo-1752600438079-974ec1337063?w=120&q=80" alt=""/></div>
+            <div class="gallery-thumb-demo"><img src="https://images.unsplash.com/photo-1621719456027-93da798ec181?w=120&q=80" alt=""/></div>
+            <div class="gallery-thumb-demo"><img src="https://images.unsplash.com/photo-1621716347723-b726a26ba4ac?w=120&q=80" alt=""/></div>
+            <div class="gallery-thumb-demo"><img src="https://images.unsplash.com/photo-1549194388-2e0e9bf48991?w=120&q=80" alt=""/></div>
+          </div>
+          <div class="gallery-main-demo">
+            <img src="https://images.unsplash.com/photo-1752600438079-974ec1337063?w=400&q=80" alt="Main" />
+            <div class="gallery-arrows-demo">
+              <button class="gallery-arrow-demo">‹</button>
+              <button class="gallery-arrow-demo">›</button>
+            </div>
+          </div>
+        </div>
+        <p style="font-size:12px; color:#9ca3af; margin-top:14px;">Active thumb: 2px solid #111827 border · Arrows: bottom-right corner · Hover on thumb triggers image switch</p>
+      </div>
+    </section>
 
-      <p class="component-label">Site footer — dark background</p>
-      <div class="footer-demo">
-        <div class="footer-grid">
-          <div>
-            <div class="footer-logo">Clean<span>Shopper</span></div>
-            <p class="footer-tagline">Helping you discover home and pantry products that are clean, non-toxic, and kind to the planet.</p>
+    <hr />
+
+    <!-- COMPARE BAR -->
+    <section class="section">
+      <h2 class="section-title">Compare Bar</h2>
+      <p class="sub-label">Fixed bottom bar — appears when 1+ products selected for comparison</p>
+      <div class="block">
+        <div class="compare-bar-demo">
+          <div style="display:flex; align-items:center; gap:16px;">
+            <div class="compare-thumbs">
+              <div class="compare-thumb"><img src="https://images.unsplash.com/photo-1752600438079-974ec1337063?w=80&q=80" alt=""/></div>
+              <div class="compare-thumb"><img src="https://images.unsplash.com/photo-1621719456027-93da798ec181?w=80&q=80" alt=""/></div>
+              <div class="compare-thumb" style="display:flex; align-items:center; justify-content:center; color:#9ca3af; font-size:20px;">+</div>
+            </div>
+            <span style="font-size:13px; color:#6b7280;">2 of 3 selected</span>
           </div>
-          <div class="footer-col">
-            <h4>Shop</h4>
-            <ul>
-              <li><a href="#">Cleaning</a></li>
-              <li><a href="#">Pantry</a></li>
-              <li><a href="#">Personal Care</a></li>
-              <li><a href="#">New Arrivals</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Company</h4>
-            <ul>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">How We Score</a></li>
-              <li><a href="#">Sustainability</a></li>
-              <li><a href="#">Blog</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Help</h4>
-            <ul>
-              <li><a href="#">FAQ</a></li>
-              <li><a href="#">Shipping</a></li>
-              <li><a href="#">Returns</a></li>
-              <li><a href="#">Contact</a></li>
-            </ul>
+          <div style="display:flex; gap:8px;">
+            <button class="btn-pill btn-black" style="font-size:13px; padding:8px 20px;">Compare</button>
+            <button class="btn-pill" style="background:#f3f4f6; color:#374151; font-size:13px; padding:8px 20px; border:none;">Clear</button>
           </div>
         </div>
-        <div class="footer-bottom">
-          <span>© 2026 CleanShopper, Inc.</span>
-          <div class="footer-social">
-            <a href="#">ig</a>
-            <a href="#">tt</a>
-            <a href="#">fb</a>
-            <a href="#">yt</a>
+        <p style="font-size:12px; color:#9ca3af; margin-top:10px;">Max 3 products · Fixed at bottom of viewport · Compare button opens modal overlay</p>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- INGREDIENTS -->
+    <section class="section">
+      <h2 class="section-title">Ingredient List</h2>
+      <p class="sub-label">Color-coded rows by concern level</p>
+      <div class="block">
+        <div style="display:flex; gap:20px; font-size:13px; color:#6b7280; margin-bottom:14px;">
+          <span><span class="dot dot-safe"></span>Safe</span>
+          <span><span class="dot dot-caution"></span>Use caution</span>
+          <span><span class="dot dot-avoid"></span>Avoid</span>
+        </div>
+        <ul class="ingredient-list-demo">
+          <li class="ing-item">
+            <span class="dot dot-safe" style="margin-top:3px; flex-shrink:0;"></span>
+            <div><span class="ing-name">Water</span></div>
+          </li>
+          <li class="ing-item caution">
+            <span class="dot dot-caution" style="margin-top:3px; flex-shrink:0;"></span>
+            <div><span class="ing-name">Sodium Lauryl Sulfate</span><span class="ing-reason">Skin irritant at high concentrations</span></div>
+          </li>
+          <li class="ing-item avoid">
+            <span class="dot dot-avoid" style="margin-top:3px; flex-shrink:0;"></span>
+            <div><span class="ing-name">Fragrance</span><span class="ing-reason">May contain undisclosed allergens</span></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- ACCORDION -->
+    <section class="section">
+      <h2 class="section-title">Accordion</h2>
+      <p class="sub-label">Collapsible sections — used in "About this item" on detail page</p>
+      <div class="block">
+        <div class="accordion-demo">
+          <div class="accordion-item">
+            <button class="accordion-header">
+              Details
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transform:rotate(180deg);"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="accordion-body">Two-column layout with Highlights (bullet list) and full product Description.</div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header">
+              Specifications
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header">
+              Shipping &amp; Returns
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header">
+              Q&amp;A
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
           </div>
         </div>
+        <p style="font-size:12px; color:#9ca3af; margin-top:10px;">Chevron rotates 180° when open · First section (Details) open by default</p>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- BREADCRUMB -->
+    <section class="section">
+      <h2 class="section-title">Breadcrumb</h2>
+      <p class="sub-label">Detail page navigation trail</p>
+      <div class="block">
+        <div class="breadcrumb-demo">
+          <span class="bc-link">Household Essentials</span>
+          <span class="bc-sep">›</span>
+          <span class="bc-link">Laundry</span>
+          <span class="bc-sep">›</span>
+          <span class="bc-current">Wool Dryer Balls (6-pack)</span>
+        </div>
+        <p style="font-size:12px; color:#9ca3af; margin-top:10px;">Links are underlined, grey. Current page is bold #111827, no underline. Separator is #d1d5db.</p>
       </div>
     </section>
 
